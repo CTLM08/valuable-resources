@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&family=PT+Sans+Narrow:wght@700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*:not(input){
+  font-family: 'JetBrains Mono', monospace;
+  color: white;
+}
