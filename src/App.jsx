@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Post from "./page/Post/index.jsx";
+import Search from "./page/slidebar/search.jsx";
 import Type from "./page/slidebar/type.jsx";
 import Upload from "./page/slidebar/upload.jsx";
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<Post />} />
           <Route path="/:id" element={<Type />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </div>
     </div>

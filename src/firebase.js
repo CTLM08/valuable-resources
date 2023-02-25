@@ -24,3 +24,8 @@ export const  uploadPost = async (name,url,image,type) => {
         type:type,
     })
 }
+export const addTypeInDB = async (type) =>{
+    await addDoc(collection(firestore, "type"), {
+        typeName: type
+    });
+}
