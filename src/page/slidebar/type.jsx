@@ -11,7 +11,7 @@ function Type() {
 
   useEffect(() => {
     if (value) {
-      setPost(value.docs.filter((doc) => doc.data().type === id));
+      setPost(value.docs.filter((doc) => doc.data().type.typeName === id));
     }
   }, [id, value]);
 
