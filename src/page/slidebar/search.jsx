@@ -1,24 +1,25 @@
-import { collection } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { firestore } from "../../firebase";
+import { collection } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { firestore } from '../../firebase';
 
-const Search = () => {
-  const [search, setSearch] = useState("");
-  const [value, loading] = useCollection(collection(firestore, "posts"));
+function Search() {
+  const [search, setSearch] = useState('');
+  const [value] = useCollection(collection(firestore, 'posts'));
   const [post, setPost] = useState([]);
+
   useEffect(() => {
     if (value) {
       setPost(
         value.docs.filter(
-          (doc) =>
-            doc.data().name.includes(search) || doc.data().type.includes(search)
-        )
+          (doc) => doc.data().name.includes(search) || doc.data().type.includes(search),
+        ),
       );
     }
   }, [value, search]);
+
   return (
-    <div className="flex bg-[#2c2f33]  w-full p-5 overflow-y-scroll h-screen flex-col">
+    <div className="flex bg-[#2c2f33] w-full p-5 overflow-y-scroll h-screen flex-col">
       <input
         type="text"
         placeholder="search"
@@ -31,9 +32,8 @@ const Search = () => {
           <div>
             <div className="bg-[#23272a] p-5 ">
               <a href={doc.data().url}>
-                {console.log(doc.data())}
                 <div className="text-2xl">{doc.data().name}</div>
-                <img src={doc.data().image} className="mt-3 h-96" />
+                <img alt="" src={doc.data().image} className="mt-3 h-96" />
               </a>
             </div>
           </div>
@@ -41,6 +41,6 @@ const Search = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Search;

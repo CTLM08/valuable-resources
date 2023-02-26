@@ -2,7 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*:not(input){
+
+*:not(input, path) {
   font-family: 'JetBrains Mono', monospace;
-  color: white;
+  color: #c3cedc;
 }

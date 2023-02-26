@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
-import Post from "./page/Post/index.jsx";
-import Search from "./page/slidebar/search.jsx";
-import Type from "./page/slidebar/type.jsx";
-import Upload from "./page/slidebar/upload.jsx";
-const App = () => {
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Post from './page/Post/index';
+import Search from './page/slidebar/search';
+import Type from './page/slidebar/type';
+import Upload from './page/slidebar/upload';
+
+function App() {
   return (
-    <div className="bg-[#2c2f33] h-[100vh] w-full flex  ">
+    <div className="bg-[#2c2f33] h-[100vh] w-full flex">
       <Navbar />
       <div className="flex-1">
         <Routes>
@@ -20,6 +21,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
 export default App;
