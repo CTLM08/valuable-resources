@@ -1,9 +1,11 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
 import { Icon } from '@iconify/react';
-import { collection, deleteDoc, doc } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { firestore } from '../../firebase';
+import Item from '../Post/components/Item';
 
 function Search() {
   const [search, setSearch] = useState('');
@@ -14,9 +16,9 @@ function Search() {
     if (value) {
       setPost(
         value.docs.filter(
-          (doc) =>
-            doc.data().name.toLowerCase().includes(search.toLowerCase()) ||
-            doc.data().type.typeName.toLowerCase().includes(search.toLowerCase()),
+          (_doc) =>
+            _doc.data().name.toLowerCase().includes(search.toLowerCase()) ||
+            _doc.data().type.typeName.toLowerCase().includes(search.toLowerCase()),
         ),
       );
     }
@@ -37,38 +39,7 @@ function Search() {
       </div>
       <div className="grid grid-cols-2 gap-4 ">
         {post.map((item) => (
-          <button
-            type="button"
-            onClick={(e) => {
-              if (!e.target.classList.contains('not-link')) {
-                window.open(item.data().url, '_blank');
-              }
-            }}
-            className="bg-[#23272a] p-5 rounded-lg shadow-lg"
-          >
-            <div className="text-2xl flex items-center justify-between">
-              {item.data().name}
-              <button
-                type="button"
-                onClick={() => {
-                  const docRef = doc(firestore, 'posts', item.id);
-                  deleteDoc(docRef);
-                }}
-                className="not-link"
-              >
-                <Icon icon="uil:trash" className="text-xl text-red-500 not-link" />
-              </button>
-            </div>
-            <img
-              alt=""
-              referrerPolicy="no-referrer"
-              src={
-                item.data().image ||
-                'https://via.placeholder.com/1200x600/23272a/c3cedc?text=No+Thumbnail'
-              }
-              className="mt-3 h-56 rounded-lg object-cover w-full"
-            />
-          </button>
+          <Item item={item} />
         ))}
       </div>
       <div>

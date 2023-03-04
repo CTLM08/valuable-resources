@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
+
 import Post from './page/Post/index';
-import Search from './page/slidebar/search';
-import Type from './page/slidebar/type';
-import Upload from './page/slidebar/upload';
+import Search from './page/Search';
+import Type from './page/Type';
+import Upload from './page/Upload';
 
 function App() {
   return (

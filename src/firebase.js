@@ -4,7 +4,6 @@ import 'firebase/compat/firestore';
 import {
   addDoc,
   collection,
-  deleteDoc,
   doc,
   getDocs,
   increment,
