@@ -1,7 +1,17 @@
 /* eslint-disable no-param-reassign */
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import { addDoc, collection, deleteDoc, getDocs } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  increment,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -30,6 +40,14 @@ export const uploadPost = async (name, url, image, type) => {
     image,
     type,
   });
+
+  const q = query(collection(firestore, 'type'), where('typeName', '==', type.typeName));
+
+  const querySnapshot = await getDocs(q);
+
+  await updateDoc(doc(firestore, 'type', querySnapshot.docs[0].id), {
+    count: increment(1),
+  });
 };
 
 export const addTypeInDB = async (type) => {
@@ -39,9 +57,19 @@ export const addTypeInDB = async (type) => {
 };
 
 // (async () => {
-//   const typesRef = await collection(firestore, 'posts');
-//   const docs = await getDocs(typesRef);
-//   docs.forEach((doc) => {
-//     deleteDoc(doc.ref);
+//   const typesRef = await collection(firestore, 'type');
+//   const postsRef = await collection(firestore, 'posts');
+//   const types = await getDocs(typesRef);
+//   const posts = await getDocs(postsRef);
+//   types.forEach((doc) => {
+//     const type = doc.data().typeName;
+//     // add post count to type
+//     let count = 0;
+//     posts.forEach((post) => {
+//       if (post.data().type.typeName === type) {
+//         count++;
+//       }
+//     });
+//     updateDoc(doc.ref, { count });
 //   });
 // })();

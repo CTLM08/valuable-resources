@@ -1,4 +1,5 @@
-import { collection } from 'firebase/firestore';
+import { Icon } from '@iconify/react';
+import { collection, deleteDoc, doc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useParams } from 'react-router-dom';
@@ -16,17 +17,42 @@ function Type() {
   }, [id, value]);
 
   return (
-    <div className="bg-[#2c2f33]  w-full p-5 overflow-y-scroll h-screen">
-      <div className="flex flex-col gap-4">
-        {post.map((doc) => (
-          <div>
-            <div className="bg-[#23272a] p-5 ">
-              <a href={doc.data().url}>
-                <div className="text-2xl">{doc.data().name}</div>
-                <img alt="" src={doc.data().image} className="mt-3 h-96" />
-              </a>
+    <div className="bg-[#2c2f33] w-full p-8 overflow-y-scroll h-screen">
+      <h1 className="text-3xl font-semibold mb-8">All Resources</h1>
+      <div className="grid grid-cols-2 gap-4 ">
+        {post.map((item) => (
+          <button
+            type="button"
+            onClick={(e) => {
+              if (!e.target.classList.contains('not-link')) {
+                window.open(item.data().url, '_blank');
+              }
+            }}
+            className="bg-[#23272a] p-5 rounded-lg shadow-lg"
+          >
+            <div className="text-2xl flex items-center justify-between">
+              {item.data().name}
+              <button
+                type="button"
+                onClick={() => {
+                  const docRef = doc(firestore, 'posts', item.id);
+                  deleteDoc(docRef);
+                }}
+                className="not-link"
+              >
+                <Icon icon="uil:trash" className="text-xl text-red-500 not-link" />
+              </button>
             </div>
-          </div>
+            <img
+              alt=""
+              referrerPolicy="no-referrer"
+              src={
+                item.data().image ||
+                'https://via.placeholder.com/1200x600/23272a/c3cedc?text=No+Thumbnail'
+              }
+              className="mt-3 h-56 rounded-lg object-cover w-full"
+            />
+          </button>
         ))}
       </div>
       <div>
@@ -36,7 +62,6 @@ function Type() {
           </div>
         )}
       </div>
-      <div>{post.length === 0 ? <div>...</div> : ''}</div>
     </div>
   );
 }
