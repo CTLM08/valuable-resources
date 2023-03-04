@@ -2159,6 +2159,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+headlessui@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/headlessui/-/headlessui-0.0.0.tgz#bffbc91c40e9a6fa09c1e6064caaa670cabc68c0"
+  integrity sha512-CHvacVPbl8AqIg2sBNKySUmumu7o15jSrCaTrIh9GW2Eq4y/krCN/vZFOsKCwlrhWQbO4267a8xvvP8bs+qREQ==
+
 html-encoding-sniffer@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-3.0.0.tgz#2cb1a8cf0db52414776e5b2a7a04d5dd98158de9"
