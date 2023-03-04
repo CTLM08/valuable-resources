@@ -19,12 +19,12 @@ function Navbar() {
         <Link to="/">
           <div className="mt-3"># 🔑-valuable-resources</div>
         </Link>
-        <Link to="/search">
-          <input
-            placeholder="search"
-            className="mt-3 bg-[#23272a] p-2 rounded-md outline-none"
-            disabled
-          />
+        <Link
+          to="/search"
+          className="mt-8 bg-[#4a4f56] p-3 rounded-md outline-none w-full text-center text-[#c3cedc] flex items-center justify-center gap-2"
+        >
+          <Icon icon="material-symbols:search-rounded" className="h-5 w-5" />
+          Search
         </Link>
         <div className="mt-16">
           <div className="flex flex-col divide-y divide-[#4a4f56]">
