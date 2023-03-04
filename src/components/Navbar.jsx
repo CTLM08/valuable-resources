@@ -27,31 +27,51 @@ function Navbar() {
           />
         </Link>
         <div className="mt-16">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col divide-y divide-[#4a4f56]">
             {value?.docs.map((doc) => (
-              <button type="button" className="w-min whitespace-nowrap">
-                <Link to={`/${doc.data().typeName}`}>{doc.data().typeName}</Link>
-              </button>
+              <Link
+                to={`/${doc.data().typeName}`}
+                className="w-full whitespace-nowrap py-4 text-left px-4 flex items-center justify-between"
+              >
+                {doc.data().typeName}
+                <span>{doc.data().count}</span>
+              </Link>
             ))}
           </div>
-          <button type="button" className="mt-4">
-            <div className="dropdown">
-              <label tabIndex={0} className=" m-1">
+          <button type="button" className="mt-4 w-full">
+            <div className="dropdown w-full">
+              <label
+                tabIndex={0}
+                className=" mb-4 w-full justify-center bg-[#4a4f56] rounded-md relative flex items-center px-4 py-3 shadow-md cursor-pointer"
+              >
                 + Add
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-3 shadow bg-base-100 rounded-box w-52 "
+                className="dropdown-content menu p-3 bg-[#373b40] rounded-lg shadow-md w-full"
               >
-                <input
-                  type="text"
-                  placeholder="add new type"
-                  className="w-full rounded-md outline-none text-center bg-white text-black "
-                  value={addType}
-                  onChange={(e) => setAddType(e.target.value)}
-                />
-                <button type="button" className="" onClick={() => addTypeInDB(addType)}>
-                  add
+                <div className="flex items-center gap-3 px-5 w-full bg-[#4a4f56] rounded-md shadow-md">
+                  <Icon icon="uil:tag-alt" className="h-5 w-5 text-[#c3cedc]" />
+                  <input
+                    type="text"
+                    className="outline-none w-full py-4 bg-transparent placeholder-[#727983] text-[#afbac7]"
+                    placeholder="Type name"
+                    value={addType}
+                    onChange={(e) => setAddType(e.target.value)}
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (addType) {
+                      addTypeInDB(addType);
+                      setAddType('');
+                    }
+                  }}
+                  className="w-full py-4 bg-[#c3cedc] text-[#2c2f33] rounded-md shadow-md font-semibold mt-4 flex items-center justify-center gap-2 hover:bg-[#b3bdc9] transition-all"
+                >
+                  <Icon icon="material-symbols:add-rounded" className="w-5 h-5 text-[#2c2f33]" />
+                  Add
                 </button>
               </ul>
             </div>
