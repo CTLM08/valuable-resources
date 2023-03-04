@@ -1,5 +1,15 @@
 import { Icon } from '@iconify/react';
-import { collection, deleteDoc, doc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  increment,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import React from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { firestore } from '../../firebase';
@@ -25,8 +35,20 @@ function Post() {
               {item.data().name}
               <button
                 type="button"
-                onClick={() => {
+                onClick={async () => {
                   const docRef = doc(firestore, 'posts', item.id);
+                  const docData = await getDoc(docRef);
+                  console.log(docData.data());
+                  const q = query(
+                    collection(firestore, 'type'),
+                    where('typeName', '==', docData.data().type.typeName),
+                  );
+
+                  const querySnapshot = await getDocs(q);
+
+                  await updateDoc(doc(firestore, 'type', querySnapshot.docs[0].id), {
+                    count: increment(-1),
+                  });
                   deleteDoc(docRef);
                 }}
                 className="not-link"
