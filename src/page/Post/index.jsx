@@ -38,7 +38,6 @@ function Post() {
                 onClick={async () => {
                   const docRef = doc(firestore, 'posts', item.id);
                   const docData = await getDoc(docRef);
-                  console.log(docData.data());
                   const q = query(
                     collection(firestore, 'type'),
                     where('typeName', '==', docData.data().type.typeName),
