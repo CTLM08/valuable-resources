@@ -11,7 +11,7 @@ function Header() {
       </Link>
       <Link
         to="/search"
-        className="mt-8 bg-[#4a4f56] p-3 rounded-md outline-none w-full text-center text-[#c3cedc] flex items-center justify-center gap-2"
+        className="mt-8 bg-[#4a4f56] hover:bg-[#575d64] transition-all p-3 rounded-md outline-none w-full text-center text-[#c3cedc] flex items-center justify-center gap-2"
       >
         <Icon icon="material-symbols:search-rounded" className="h-5 w-5" />
         Search
