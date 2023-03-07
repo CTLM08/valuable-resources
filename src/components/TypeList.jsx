@@ -12,7 +12,7 @@ export default function TypeList() {
     <div className="flex flex-col divide-y divide-[#4a4f56]">
       {value?.docs.map((doc) => (
         <Link
-          to={`/${doc.data().typeName}`}
+          to={`/${encodeURIComponent(doc.data().typeName)}`}
           className="w-full whitespace-nowrap py-4 text-left px-4 flex items-center justify-between"
         >
           <span className="flex items-center gap-2">
