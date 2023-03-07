@@ -10,7 +10,7 @@ import Upload from './page/Upload';
 
 function App() {
   return (
-    <div className="bg-[#2c2f33] h-[100vh] w-full flex">
+    <div className="bg-[#2c2f33] h-[100vh] w-full overflow-hidden relative flex">
       <Navbar />
       <div className="flex-1">
         <Routes>

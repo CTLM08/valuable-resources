@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
+import { Icon } from '@iconify/react';
 import { firestore } from '../firebase';
 
 export default function TypeList() {
@@ -14,7 +15,10 @@ export default function TypeList() {
           to={`/${doc.data().typeName}`}
           className="w-full whitespace-nowrap py-4 text-left px-4 flex items-center justify-between"
         >
-          {doc.data().typeName}
+          <span className="flex items-center gap-2">
+            <Icon icon={doc.data().icon} className="h-5 w-5 mr-2" />
+            {doc.data().typeName}
+          </span>
           <span>{doc.data().count}</span>
         </Link>
       ))}

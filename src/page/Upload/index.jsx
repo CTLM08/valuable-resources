@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import UploadButton from './components/UploadButton';
 import DataTypeSelector from './components/DataTypeSelector';
-import Input from './components/Input';
+import Input from '../../components/Input';
 
 function Upload() {
   const [DataType, setDataType] = useState('Select type');

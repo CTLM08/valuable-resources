@@ -9,7 +9,7 @@ import TypeList from './TypeList';
 
 function Navbar() {
   return (
-    <div className=" p-8 flex flex-col w-1/4 justify-between">
+    <div className=" p-8 flex flex-col w-1/4 justify-between overflow-scroll gap-8">
       <div>
         <Header />
         <div className="mt-16">

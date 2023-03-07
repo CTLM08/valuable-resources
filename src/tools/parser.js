@@ -3,6 +3,7 @@ const parser = new DOMParser();
 const parseHTML = (html) => {
   const doc = parser.parseFromString(html, 'text/html');
   const ogImage = doc.querySelector("meta[property='og:image'],meta[name='og:image']");
+  console.log(ogImage);
   if (ogImage) {
     return ogImage.content;
   }

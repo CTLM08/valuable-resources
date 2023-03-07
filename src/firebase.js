@@ -4,6 +4,7 @@ import 'firebase/compat/firestore';
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   increment,
@@ -49,9 +50,11 @@ export const uploadPost = async (name, url, image, type) => {
   });
 };
 
-export const addTypeInDB = async (type) => {
+export const addTypeInDB = async (type, icon) => {
   await addDoc(collection(firestore, 'type'), {
     typeName: type,
+    icon,
+    count: 0,
   });
 };
 

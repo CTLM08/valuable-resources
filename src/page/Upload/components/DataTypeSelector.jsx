@@ -17,7 +17,7 @@ export default function DataTypeSelector({ DataType, setDataType }) {
       <div className="relative w-full">
         <Listbox.Button className="relative w-full flex rounded-md bg-[#373b40] py-4 pl-5 items-center gap-3 text-left shadow-md focus:outline-none">
           <Icon
-            icon={DataType !== 'Select type' ? `simple-icons:${DataType.icon}` : 'uil:apps'}
+            icon={DataType !== 'Select type' ? DataType.icon : 'uil:apps'}
             className="h-5 w-5 text-[#c3cedc]"
           />
           <span className="block truncate">{DataType.typeName ?? DataType}</span>
@@ -47,10 +47,7 @@ export default function DataTypeSelector({ DataType, setDataType }) {
                     type.data().typeName === DataType.typeName ? 'font-semibold' : 'font-normal'
                   }`}
                 >
-                  <Icon
-                    icon={`simple-icons:${type.data().icon}`}
-                    className="h-5 w-5 text-[#c3cedc]"
-                  />
+                  <Icon icon={type.data().icon} className="h-5 w-5 text-[#c3cedc]" />
                   {type.data().typeName}
                 </span>
                 {type.data().typeName === DataType.typeName && (
