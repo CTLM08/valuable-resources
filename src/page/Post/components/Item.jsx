@@ -41,7 +41,7 @@ function Item({ item }) {
           window.open(item.data().url, '_blank');
         }
       }}
-      className="bg-[#23272a] p-5 rounded-lg shadow-lg"
+      className="bg-[#23272a] p-5 rounded-lg shadow-lg text-left"
     >
       <div className="text-2xl flex items-center justify-between">
         {item.data().name}

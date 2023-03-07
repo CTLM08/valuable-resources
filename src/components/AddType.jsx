@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
@@ -5,11 +6,9 @@ import { Icon } from '@iconify/react';
 import { addTypeInDB } from '../firebase';
 import IconSelector from './IconSelector';
 
-export default function AddType() {
+export default function AddType({ selectedIcon, setIsIconSelectorOpen, setSelectedIcon }) {
   const [isAddTypeOpen, setIsAddTypeOpen] = useState(false);
   const [addType, setAddType] = useState('');
-  const [selectedIcon, setSelectedIcon] = useState(null);
-  const [isIconSelectorOpen, setIsIconSelectorOpen] = useState(false);
 
   return (
     <div className="mt-4 w-full">
@@ -65,11 +64,6 @@ export default function AddType() {
           </div>
         )}
       </div>
-      <IconSelector
-        isOpen={isIconSelectorOpen}
-        setOpen={setIsIconSelectorOpen}
-        setSelectedIcon={setSelectedIcon}
-      />
     </div>
   );
 }

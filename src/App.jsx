@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 import Post from './page/Post/index';
-import Search from './page/Search';
 import Type from './page/Type';
 import Upload from './page/Upload';
 
@@ -16,9 +15,8 @@ function App() {
         <Routes>
           {/* type cannot open */}
           <Route path="/" element={<Post />} />
-          <Route path="/:id" element={<Type />} />
+          <Route path="/:id" element={<Post />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/search" element={<Search />} />
         </Routes>
       </div>
     </div>
