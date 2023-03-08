@@ -3,19 +3,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from './Input';
 
-function Header({ categorySearchQuery, setCategorySearchQuery }) {
+function Header() {
   return (
     <div>
       <div className="text-xl font-semibold">Make React Great Again</div>
-      <Link to="/" className="mt-4 mb-12 block">
+      <Link to="/" className="mt-2 text-sm">
         # 🔑-valuable-resources
       </Link>
-      <Input
-        value={categorySearchQuery}
-        setValue={setCategorySearchQuery}
-        placeholder="Search categories"
-        icon="uil:search"
-      />
     </div>
   );
 }

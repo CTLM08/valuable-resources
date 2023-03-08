@@ -6,9 +6,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-
 import { Icon } from '@iconify/react';
-import { collections } from '@iconify/collections';
 
 import IconSetList from './components/IconSetList';
 import IconSet from './components/IconSet';
@@ -20,7 +18,7 @@ function IconSelector({ isOpen, setOpen, setSelectedIcon }) {
   return (
     <div
       className={`w-full h-screen bg-neutral-900 transition-colors duration-500 absolute top-0 left-0 ${
-        isOpen ? 'bg-opacity-50 z-50' : 'bg-opacity-0 z-[-1]'
+        isOpen ? 'bg-opacity-50 z-[9999]' : 'bg-opacity-0 z-[-1]'
       }`}
     >
       <div
@@ -28,8 +26,8 @@ function IconSelector({ isOpen, setOpen, setSelectedIcon }) {
           isOpen ? 'translate-y-0' : 'translate-y-[110%]'
         }`}
       >
-        <div className="bg-[#2c2f33] flex relative flex-col rounded-lg items-center justify-center w-full mx-4 510:mx-16 lg:w-3/4 p-8 pb-0 shadow-2xl max-h-[calc(100vh-8rem)]">
-          <div className="flex items-center justify-between w-full mb-6">
+        <div className="bg-[#2c2f33] flex relative flex-col rounded-lg items-center justify-center w-full mx-4 510:mx-16 lg:w-3/4 shadow-2xl max-h-[calc(100vh-8rem)]">
+          <div className="flex items-center justify-between w-full mb-6 p-8 pb-0">
             {currentIconSet ? (
               <button
                 onClick={() => setCurrentIconSet(null)}
@@ -45,7 +43,7 @@ function IconSelector({ isOpen, setOpen, setSelectedIcon }) {
                 Select Icon
               </h1>
             )}
-            <p className="text-right flex-shrink-0">
+            <p className="text-right flex-shrink-0 text-sm sm:text-base">
               Powered by&nbsp;
               <a
                 target="_blank"

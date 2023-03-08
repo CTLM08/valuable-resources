@@ -4,14 +4,13 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 import Post from './page/Post/index';
-import Type from './page/Type';
 import Upload from './page/Upload';
 
 function App() {
   return (
-    <div className="bg-[#2c2f33] h-[100vh] w-full overflow-hidden relative flex">
+    <div className="bg-[#2c2f33] h-[100vh] w-full overflow-hidden relative flex min-w-0">
       <Navbar />
-      <div className="flex-1">
+      <div className="flex-1 md:mt-0">
         <Routes>
           {/* type cannot open */}
           <Route path="/" element={<Post />} />

@@ -36,8 +36,8 @@ export default function IconSetList({ setCurrentIconSet }) {
   const [iconFilterTerm, setIconFilterTerm] = useState('');
 
   return (
-    <>
-      <div className="flex w-full gap-2">
+    <div className="overflow-scroll p-8 pt-0 pb-2">
+      <div className="flex w-full gap-2 flex-col sm:flex-row">
         <Input
           value={searchQuery}
           setValue={setSearchQuery}
@@ -55,7 +55,7 @@ export default function IconSetList({ setCurrentIconSet }) {
           <Icon icon="uil:arrow-right" className="w-5 h-5 text-[#2c2f33]" />
         </button>
       </div>
-      <div className="flex items-center w-full">
+      <div className="flex items-center w-full gap-8 flex-col lg:flex-row">
         <div className="flex flex-wrap mt-4 gap-2 w-full">
           {Object.keys(ICON_SETS).map((category, index) => (
             <button
@@ -69,7 +69,7 @@ export default function IconSetList({ setCurrentIconSet }) {
             </button>
           ))}
         </div>
-        <div className="w-1/3">
+        <div className="w-full lg:w-3/5 xl:w-1/3">
           <Input
             value={iconFilterTerm}
             setValue={setIconFilterTerm}
@@ -94,7 +94,7 @@ export default function IconSetList({ setCurrentIconSet }) {
                   <div className="mb-8 rounded-lg text-center text-2xl font-medium after:w-8 after:absolute relative after:-bottom-2 after:left-1/2 after:border-b-2 after:border-b-[#c3cedc] after:-translate-x-1/2">
                     {category}
                   </div>
-                  <div className="flex-wrap grid grid-cols-4 gap-4 icon-list">
+                  <div className="flex-wrap grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4 icon-list">
                     {iconSets.map(
                       (iconSet) =>
                         (!iconFilterTerm.trim() ||
@@ -157,6 +157,6 @@ export default function IconSetList({ setCurrentIconSet }) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }

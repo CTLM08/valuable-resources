@@ -14,7 +14,7 @@ function Upload() {
   const [url, setURL] = useState('');
 
   return (
-    <div className="flex items-center justify-center h-full flex-col gap-4 p-40">
+    <div className="flex items-center justify-center h-full flex-col gap-4 p-8 sm:p-12 lg:p-24 xl:p-40">
       <div className="flex justify-center w-full items-center gap-4 text-3xl mb-6">
         <Icon icon="uil:upload" className="h-9 w-9 text-[#c3cedc]" />
         Add Resource

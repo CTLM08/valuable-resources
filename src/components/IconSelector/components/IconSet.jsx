@@ -58,7 +58,7 @@ function IconSet({ setOpen, iconSet, setSelectedIcon }) {
   }, [searchTerm, currentTag, iconData]);
 
   return iconData ? (
-    <div className="flex w-full flex-col min-h-0">
+    <div className="flex w-full flex-col min-h-0 p-8 overflow-scroll">
       <h1 className="mb-6 text-3xl font-semibold tracking-wide text-center flex flex-col items-center gap-1 sm:inline">
         {iconData.name}
         <span className="sm:ml-2 text-base">v{iconData.version}</span>
@@ -87,7 +87,7 @@ function IconSet({ setOpen, iconSet, setSelectedIcon }) {
           )}
         </div>
       )}
-      <div className="w-full pb-8 grid gap-3 mt-8 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] overflow-scroll min-h-0">
+      <div className="w-full pb-8 grid gap-3 mt-8 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] min-h-0">
         {filteredIconList.map((icon) => (
           <button
             type="button"

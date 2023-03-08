@@ -61,7 +61,7 @@ function Search({
   }, [currentIconSet, iconData]);
 
   return iconData ? (
-    <div className="flex w-full flex-col min-h-0">
+    <div className="flex w-full flex-col min-h-0 overflow-scroll p-8">
       <div className="flex w-full gap-2">
         <Input
           value={searchQuery}
@@ -97,7 +97,7 @@ function Search({
             ))}
         </div>
       )}
-      <div className=" pb-8 grid gap-3 mt-8 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] overflow-scroll min-h-0">
+      <div className=" pb-8 grid gap-3 mt-8 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] min-h-0">
         {filteredIconList.map((icon) => (
           <button
             type="button"

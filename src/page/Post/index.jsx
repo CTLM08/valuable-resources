@@ -21,7 +21,7 @@ function Post() {
   }, [id, value]);
 
   return (
-    <div className="bg-[#2c2f33] w-full p-8 overflow-y-scroll h-screen">
+    <div className="bg-[#2c2f33] w-full p-8 pt-36 sm:pt-8 overflow-y-scroll h-screen">
       <h1 className="text-3xl font-semibold flex-shrink-0 mb-8">
         {id ?? 'All'} Resources <span className="text-base">({post.length})</span>
       </h1>
@@ -31,7 +31,7 @@ function Post() {
         placeholder="Search resouces"
         icon="uil:search"
       />
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-4 mt-8">
+      <div className="grid sm:grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-4 mt-8">
         {post
           .filter((doc) => doc.data().name.toLowerCase().includes(searchQuery.toLowerCase()))
           .map((item) => (

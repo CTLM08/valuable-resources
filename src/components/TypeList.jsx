@@ -8,13 +8,14 @@ import { collection } from 'firebase/firestore';
 import { Icon } from '@iconify/react';
 import { firestore } from '../firebase';
 
-export default function TypeList({ categorySearchQuery }) {
+export default function TypeList({ categorySearchQuery, setIsOpen }) {
   const [value] = useCollection(collection(firestore, 'type'));
 
   return (
     <div className="flex flex-col divide-y divide-[#4a4f56] overflow-scroll flex-shrink">
       <Link
         to="/"
+        onClick={() => setIsOpen(false)}
         className="w-full whitespace-nowrap py-4 text-left px-4 flex items-center justify-between"
       >
         <span className="flex items-center gap-2">
@@ -29,6 +30,8 @@ export default function TypeList({ categorySearchQuery }) {
         )
         .map((doc) => (
           <Link
+            key={doc.id}
+            onClick={() => setIsOpen(false)}
             to={`/${encodeURIComponent(doc.data().typeName)}`}
             className="w-full whitespace-nowrap py-4 text-left px-4 flex items-center justify-between"
           >
