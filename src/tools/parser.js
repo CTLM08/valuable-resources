@@ -12,11 +12,15 @@ const parseHTML = (html) => {
 export default async (url) => {
   try {
     const img = await fetch(`https://${url.split('://')[1] ?? url}`)
-      .then((e) => e.text())
+      .then((e) => {
+        if (e.status === 400) {
+          throw new Error('hmm');
+        }
+        return e.text();
+      })
       .then(parseHTML);
     return img;
   } catch {
-    console.log('hmm');
     const img = await fetch(`https://cors-anywhere.thecodeblog.net/${url.split('://')[1] ?? url}`)
       .then((e) => e.text())
       .then(parseHTML);

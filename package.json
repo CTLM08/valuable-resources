@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.12",
+    "@iconify/collections": "^1.0.245",
     "@iconify/react": "^4.1.0",
     "axios": "^1.3.4",
     "daisyui": "^2.51.0",

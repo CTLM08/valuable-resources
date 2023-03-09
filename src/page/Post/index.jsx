@@ -1,72 +1,42 @@
-import { Icon } from '@iconify/react';
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  increment,
-  query,
-  updateDoc,
-  where,
-} from 'firebase/firestore';
-import React from 'react';
+/* eslint-disable react/jsx-one-expression-per-line */
+import { collection } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
+import { useParams } from 'react-router-dom';
+import Input from '../../components/Input';
 import { firestore } from '../../firebase';
+
+import Item from './components/Item';
 
 function Post() {
   const [value, loading] = useCollection(collection(firestore, 'posts'));
+  const [searchQuery, setSearchQuery] = useState('');
+  const [post, setPost] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (value) {
+      setPost(id ? value.docs.filter((_doc) => _doc.data().type.typeName === id) : value.docs);
+    }
+  }, [id, value]);
 
   return (
-    <div className="bg-[#2c2f33] w-full p-8 overflow-y-scroll h-screen">
-      <h1 className="text-3xl font-semibold mb-8">All Resources</h1>
-      <div className="grid grid-cols-2 gap-4 ">
-        {value?.docs.map((item) => (
-          <button
-            type="button"
-            onClick={(e) => {
-              if (!e.target.classList.contains('not-link')) {
-                window.open(item.data().url, '_blank');
-              }
-            }}
-            className="bg-[#23272a] p-5 rounded-lg shadow-lg"
-          >
-            <div className="text-2xl flex items-center justify-between">
-              {item.data().name}
-              <button
-                type="button"
-                onClick={async () => {
-                  const docRef = doc(firestore, 'posts', item.id);
-                  const docData = await getDoc(docRef);
-                  console.log(docData.data());
-                  const q = query(
-                    collection(firestore, 'type'),
-                    where('typeName', '==', docData.data().type.typeName),
-                  );
-
-                  const querySnapshot = await getDocs(q);
-
-                  await updateDoc(doc(firestore, 'type', querySnapshot.docs[0].id), {
-                    count: increment(-1),
-                  });
-                  deleteDoc(docRef);
-                }}
-                className="not-link"
-              >
-                <Icon icon="uil:trash" className="text-xl text-red-500 not-link" />
-              </button>
-            </div>
-            <img
-              alt=""
-              referrerPolicy="no-referrer"
-              src={
-                item.data().image ||
-                'https://via.placeholder.com/1200x600/23272a/c3cedc?text=No+Thumbnail'
-              }
-              className="mt-3 h-56 rounded-lg object-cover w-full"
-            />
-          </button>
-        ))}
+    <div className="bg-[#2c2f33] w-full p-8 pt-36 sm:pt-8 overflow-y-scroll h-screen">
+      <h1 className="text-3xl font-semibold flex-shrink-0 mb-8">
+        {id ?? 'All'} Resources <span className="text-base">({post.length})</span>
+      </h1>
+      <Input
+        value={searchQuery}
+        setValue={setSearchQuery}
+        placeholder="Search resouces"
+        icon="uil:search"
+      />
+      <div className="grid sm:grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-4 mt-8">
+        {post
+          .filter((doc) => doc.data().name.toLowerCase().includes(searchQuery.toLowerCase()))
+          .map((item) => (
+            <Item item={item} />
+          ))}
       </div>
       <div>
         {loading && (
